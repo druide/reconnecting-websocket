@@ -72,21 +72,15 @@ var socket = new ReconnectingWebSocket(url, protocols, options);
 Options can either be passed as the 3rd parameter upon instantiation or set directly on the object after instantiation:
 
 ```javascript
-var socket = new ReconnectingWebSocket(url, null, {debug: true, reconnectInterval: 3000});
+var socket = new ReconnectingWebSocket(url, null, {reconnectInterval: 3000});
 ```
 
 or
 
 ```javascript
 var socket = new ReconnectingWebSocket(url);
-socket.debug = true;
 socket.timeoutInterval = 5400;
 ```
-
-#### `debug`
-- Whether this instance should log debug messages or not. Debug messages are printed to `console.debug()`.
-- Accepts `true` or `false`
-- Default value: `false`
 
 #### `automaticOpen`
 - Whether or not the websocket should attempt to connect immediately upon instantiation. The socket can be manually opened or closed at any time using ws.open() and ws.close().
@@ -145,5 +139,3 @@ socket.timeoutInterval = 5400;
 Like this? Check out [websocketd](https://github.com/joewalnes/websocketd) for the simplest way to create WebSocket backends from any programming language.
 
 [Follow @joewalnes](https://twitter.com/joewalnes)
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joewalnes/reconnecting-websocket/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
