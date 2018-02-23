@@ -150,7 +150,7 @@
      * Can be one of: WebSocket.CONNECTING, WebSocket.OPEN, WebSocket.CLOSING, WebSocket.CLOSED
      * Read only.
      */
-    this.readyState = WebSocket.CONNECTING
+    this.readyState = WebSocket.CLOSED
 
     /**
      * A string indicating the name of the sub-protocol the server selected; this will be one of
@@ -200,6 +200,9 @@
     };
 
     this.open = function (reconnectAttempt) {
+      if (!reconnectAttempt) forcedClose = false
+
+      this.readyState = WebSocket.CONNECTING
       ws = new WebSocket(self.url, protocols || [])
       ws.binaryType = this.binaryType
 
@@ -304,6 +307,7 @@
       forcedClose = true
       if (ws) {
         ws.close(code, reason)
+        ws = null
       }
     }
 
@@ -314,6 +318,7 @@
     this.refresh = function () {
       if (ws) {
         ws.close()
+        ws = null
       }
     }
   }
